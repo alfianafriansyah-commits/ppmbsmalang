@@ -901,6 +901,48 @@
                 margin-left: 0;
             }
         }
+        /* =====================================================
+   FIX RESPONSIVE FOTO PENGASUH
+   Hanya memperbaiki tampilan section Pengasuh
+   Tidak mengubah bagian website lainnya
+===================================================== */
+
+@media (max-width: 768px) {
+
+    #pengasuh .fade-in[style*="grid-template-columns"]{
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    #pengasuh img{
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: 500px;
+        object-fit: cover !important;
+        object-position: center top !important;
+        display: block;
+    }
+
+    #pengasuh .fade-in[style*="grid-template-columns"] > div:first-child{
+        width: 100%;
+    }
+
+    #pengasuh .fade-in[style*="grid-template-columns"] > div:last-child{
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #pengasuh img{
+        max-height: 380px;
+    }
+
+    #pengasuh .fade-in[style*="grid-template-columns"] > div:last-child{
+        padding: 1.25rem !important;
+    }
+}
     </style>
 </head>
 <body>
