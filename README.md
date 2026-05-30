@@ -1,2 +1,2 @@
 # ppmbsmalang
-Mebsite PP Mambaus Sholihin Malang
+Website PP Mambaus Sholihin Malang
