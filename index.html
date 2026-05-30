@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
             --primary: #1a4731;
@@ -650,8 +652,16 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
         .contact-icon {
-            font-size: 1.6rem;
-            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: rgba(26,71,49,0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.4rem;
+            flex-shrink: 0; 
         }
         .contact-info h4 {
             font-size: 0.85rem;
@@ -1313,35 +1323,45 @@
             <div class="contact-grid">
                 <div class="contact-cards fade-in">
                     <div class="contact-card">
-                        <span class="contact-icon">📍</span>
+                        <span class="contact-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </span>
                         <div class="contact-info">
                             <h4>Alamat</h4>
                             <p>Jl. Tirto Praloyo, Gang Kramat No.1, RT 02/RW 08, Landungsari, Dau, Malang</p>
                         </div>
                     </div>
                     <a href="https://wa.me/6282257508018" target="_blank" class="contact-card">
-                        <span class="contact-icon">💬</span>
+                        <span class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </span>
                         <div class="contact-info">
                             <h4>WhatsApp</h4>
                             <p>0822-5750-8018 (a.n. Syafiq)</p>
                         </div>
                     </a>
                     <a href="https://instagram.com/ppmbsmalang" target="_blank" class="contact-card">
-                        <span class="contact-icon">📷</span>
+                        <span class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </span>
                         <div class="contact-info">
                             <h4>Instagram</h4>
                             <p>@ppmbsmalang</p>
                         </div>
                     </a>
                     <a href="https://youtube.com/@Ppmbsm" target="_blank" class="contact-card">
-                        <span class="contact-icon">▶️</span>
+                        <span class="contact-icon">
+                            <i class="fab fa-youtube"></i>
+                        </span>
                         <div class="contact-info">
                             <h4>Youtube</h4>
                             <p>@Ppmbsm</p>
                         </div>
                     </a>
                     <a href="https://tiktok.com/@mediambsmalang" target="_blank" class="contact-card">
-                        <span class="contact-icon">🎵</span>
+                        <span class="contact-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </span>
                         <div class="contact-info">
                             <h4>TikTok</h4>
                             <p>@mediambsmalang</p>
