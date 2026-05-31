@@ -434,39 +434,50 @@
             display: block;
         }
 
-        /* Programs Grid */
+/* Programs Grid */
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 40px;
+            gap: 20px; /* Jarak antar kotak dipersempit dari 24px */
+            margin-top: 30px;
         }
         .program-card {
             background: var(--white);
             border-radius: 12px;
-            padding: 32px;
+            padding: 24px; /* Padding dikurangi agar tidak melompong */
             border-top: 4px solid var(--primary);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); /* Bayangan diperhalus */
             transition: all 0.3s;
         }
         .program-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
+        
+        /* Desain Icon Minimalis & Profesional */
         .program-icon {
-            font-size: 2.5rem;
+            font-size: 1.4rem;
+            color: var(--primary);
             margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: rgba(26, 71, 49, 0.08); /* Kotak background tipis */
+            border-radius: 10px;
         }
+        
         .program-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem; /* Ukuran font disesuaikan sedikit */
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Jarak ke deskripsi dirapatkan */
             color: var(--text-dark);
         }
         .program-card p {
             color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.9rem; /* Dikecilkan sedikit agar elegan */
+            line-height: 1.5;
         }
 
         /* Facilities Tabs & Layouts */
@@ -1246,42 +1257,43 @@
   </div>
 </section>
 
-    <!-- Programs Section -->
+<!-- Programs Section -->
     <section class="section section-light" id="program">
         <div class="section-container">
-            <div class="text-center fade-in">
+            <!-- Tambahan text-align: center agar judul sejajar dengan garis emas -->
+            <div class="text-center fade-in" style="text-align: center;">
                 <p class="section-label">Program Kami</p>
                 <h2 class="section-title">Program Unggulan Pesantren</h2>
-                <div class="gold-line" style="margin: 0 auto 24px;"></div>
+                <div class="gold-line" style="margin: 0 auto 32px;"></div>
             </div>
             <div class="programs-grid">
                 <div class="program-card fade-in">
-                    <div class="program-icon">📖</div>
+                    <div class="program-icon"><i class="fas fa-book-open"></i></div>
                     <h3>Tahfidz Al-Qur'an</h3>
                     <p>Hafalan 30 Juz secara talaqqi dengan tartil bersanad</p>
                 </div>
                 <div class="program-card fade-in">
-                    <div class="program-icon">📚</div>
+                    <div class="program-icon"><i class="fas fa-book"></i></div>
                     <h3>Kajian Kitab</h3>
                     <p>Pembelajaran Kutub Turots dan Kajian Islam Kontemporer</p>
                 </div>
                 <div class="program-card fade-in">
-                    <div class="program-icon">🤲</div>
+                    <div class="program-icon"><i class="fas fa-hands-praying"></i></div>
                     <h3>Wirid & Dzikir</h3>
                     <p>Pembiasaan wirid dan amalan dzikir sehari-hari</p>
                 </div>
                 <div class="program-card fade-in">
-                    <div class="program-icon">🌙</div>
+                    <div class="program-icon"><i class="fas fa-star-and-crescent"></i></div>
                     <h3>Maulid & Sholawat</h3>
                     <p>Pembacaan Maulid Simtudduror dan Sholawat Rutin Bulanan</p>
                 </div>
                 <div class="program-card fade-in">
-                    <div class="program-icon">🤝</div>
+                    <div class="program-icon"><i class="fas fa-hand-holding-heart"></i></div>
                     <h3>Sedekah & Jamaah</h3>
                     <p>Sedekah Shubuh dan pembiasaan sholat berjamaah</p>
                 </div>
                 <div class="program-card fade-in">
-                    <div class="program-icon">❤️</div>
+                    <div class="program-icon"><i class="fas fa-users"></i></div>
                     <h3>Khidmah</h3>
                     <p>Pengabdian kepada pesantren dan masyarakat sekitar</p>
                 </div>
