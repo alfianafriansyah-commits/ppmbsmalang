@@ -469,7 +469,7 @@
             line-height: 1.6;
         }
 
-        /* Facilities Tabs */
+        /* Facilities Tabs & Layouts */
         .facilities-tabs {
             display: flex;
             gap: 12px;
@@ -501,11 +501,41 @@
         .tab-content.active {
             display: block;
         }
+        
+        /* Layout Pembungkus Gambar + Grid Fasilitas */
+        .facility-layout {
+            display: flex;
+            gap: 40px;
+            align-items: stretch;
+        }
+        .facility-layout.reverse {
+            flex-direction: row-reverse;
+        }
+        .facility-image-container {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative; /* Menjaga agar gambar full sesuai height parent */
+        }
+        .facility-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
         .facilities-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
         }
+        /* Override kolom agar muat dan cantik di sebelah gambar */
+        .facility-layout .facilities-grid {
+            flex: 1.5; /* Memberi ruang lebih untuk grid daftar fasilitas */
+            grid-template-columns: repeat(2, 1fr);
+            align-content: start;
+        }
+        
         .facility-item {
             display: flex;
             align-items: center;
@@ -812,13 +842,23 @@
             fill: currentColor;
         }
 
-        /* Responsive */
+        /* Responsive Layout Updates */
         @media (max-width: 1024px) {
             .programs-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .facilities-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .facilities-grid, .facility-layout .facilities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .facility-layout, .facility-layout.reverse {
+                flex-direction: column;
+            }
+            .facility-image-container {
+                min-height: 350px;
+                max-height: 400px;
             }
         }
 
@@ -849,9 +889,6 @@
             .programs-grid {
                 grid-template-columns: 1fr;
             }
-            .facilities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .pricing-grid {
                 grid-template-columns: 1fr;
             }
@@ -870,6 +907,10 @@
             }
             .cta-content h2 {
                 font-size: 2rem;
+            }
+            .facility-image-container {
+                min-height: 250px;
+                max-height: 300px;
             }
         }
 
@@ -890,7 +931,7 @@
                 padding: 10px 0;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
-            .facilities-grid {
+            .facilities-grid, .facility-layout .facilities-grid {
                 grid-template-columns: 1fr;
             }
             .facilities-tabs {
@@ -912,97 +953,74 @@
                 margin-left: 0;
             }
         }
-        /* =====================================================
-   FIX RESPONSIVE FOTO PENGASUH
-   Hanya memperbaiki tampilan section Pengasuh
-   Tidak mengubah bagian website lainnya
-===================================================== */
+        
+        /* Fix Responsive Pengasuh Section */
+        @media (max-width: 768px) {
+            #pengasuh .fade-in[style*="grid-template-columns"]{
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+            }
+            #pengasuh img{
+                width: 100% !important;
+                height: auto !important;
+                min-height: auto !important;
+                max-height: 500px;
+                object-fit: cover !important;
+                object-position: center top !important;
+                display: block;
+            }
+            #pengasuh .fade-in[style*="grid-template-columns"] > div:first-child{
+                width: 100%;
+            }
+            #pengasuh .fade-in[style*="grid-template-columns"] > div:last-child{
+                padding: 1.5rem !important;
+            }
+            .hero-content{
+                max-width: 95%;
+            }
+            .hero-label{
+                font-size: 0.85rem;
+                letter-spacing: 2px;
+                line-height: 1.5;
+            }
+            .hero-title{
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 14px;
+            }
+            .hero-subtitle{
+                font-size: 1.1rem;
+                line-height: 1.5;
+                margin-bottom: 16px;
+            }
+            .hero-desc{
+                font-size: 1rem;
+                line-height: 1.8;
+                max-width: 100%;
+                margin-bottom: 24px;
+            }
+        }
 
-@media (max-width: 768px) {
-
-    #pengasuh .fade-in[style*="grid-template-columns"]{
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-    }
-
-    #pengasuh img{
-        width: 100% !important;
-        height: auto !important;
-        min-height: auto !important;
-        max-height: 500px;
-        object-fit: cover !important;
-        object-position: center top !important;
-        display: block;
-    }
-
-    #pengasuh .fade-in[style*="grid-template-columns"] > div:first-child{
-        width: 100%;
-    }
-
-    #pengasuh .fade-in[style*="grid-template-columns"] > div:last-child{
-        padding: 1.5rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-
-    #pengasuh img{
-        max-height: 380px;
-    }
-
-    #pengasuh .fade-in[style*="grid-template-columns"] > div:last-child{
-        padding: 1.25rem !important;
-    }
-}
-@media (max-width: 768px) {
-
-    .hero-content{
-        max-width: 95%;
-    }
-
-    .hero-label{
-        font-size: 0.85rem;
-        letter-spacing: 2px;
-        line-height: 1.5;
-    }
-
-    .hero-title{
-        font-size: 2rem;
-        line-height: 1.2;
-        margin-bottom: 14px;
-    }
-
-    .hero-subtitle{
-        font-size: 1.1rem;
-        line-height: 1.5;
-        margin-bottom: 16px;
-    }
-
-    .hero-desc{
-        font-size: 1rem;
-        line-height: 1.8;
-        max-width: 100%;
-        margin-bottom: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .hero-title{
-        font-size: 1.7rem;
-        line-height: 1.25;
-    }
-
-    .hero-subtitle{
-        font-size: 1rem;
-    }
-
-    .hero-desc{
-        font-size: 0.95rem;
-        line-height: 1.8;
-        padding: 0 10px;
-    }
-}
+        @media (max-width: 480px) {
+            #pengasuh img{
+                max-height: 380px;
+            }
+            #pengasuh .fade-in[style*="grid-template-columns"] > div:last-child{
+                padding: 1.25rem !important;
+            }
+            .hero-title{
+                font-size: 1.7rem;
+                line-height: 1.25;
+            }
+            .hero-subtitle{
+                font-size: 1rem;
+            }
+            .hero-desc{
+                font-size: 0.95rem;
+                line-height: 1.8;
+                padding: 0 10px;
+            }
+        }
 
         /* Santri Stats Bar (Angka Santri) */
         .santri-stats {
@@ -1130,12 +1148,12 @@
     <div class="santri-stats">
         <div class="santri-container">
             <div class="santri-item fade-in">
-                <p class="santri-value"><span class="counter" data-target="25">0</span></p>
-                <p class="santri-label">Santri Pesantren</p>
+                <p class="santri-value"><span class="counter" data-target="150">0</span></p>
+                <p class="santri-label">Santri Komplek Pesantren</p>
             </div>
             <div class="santri-item fade-in">
-                <p class="santri-value"><span class="counter" data-target="17">0</span></p>
-                <p class="santri-label">Santri Muhajirin</p>
+                <p class="santri-value"><span class="counter" data-target="85">0</span></p>
+                <p class="santri-label">Santri Komplek Muhajirin</p>
             </div>
         </div>
     </div>
@@ -1283,33 +1301,54 @@
                 <button class="tab-btn active" onclick="switchTab('komplek')">Komplek Pesantren</button>
                 <button class="tab-btn" onclick="switchTab('muhajirin')">Komplek Muhajirin</button>
             </div>
+            
+            <!-- Tab Komplek Pesantren: Gambar di Kiri, Grid di Kanan -->
             <div id="komplek" class="tab-content active">
-                <div class="facilities-grid">
-                    <div class="facility-item fade-in"><span class="facility-icon">🗄️</span><span class="facility-text">Lemari Pendidikan</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🍳</span><span class="facility-text">Dapur Bersama</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🚿</span><span class="facility-text">Kamar Mandi</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">📶</span><span class="facility-text">Wi-Fi 300 Mbps</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🏋️</span><span class="facility-text">Rooftop & Gym</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🍜</span><span class="facility-text">Kantin Kejujuran</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🏛️</span><span class="facility-text">Aula & Ruang Belajar</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">👕</span><span class="facility-text">Jemuran & Gantungan Baju</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">💊</span><span class="facility-text">P3K</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">👟</span><span class="facility-text">Rak Sepatu & Sandal</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">📦</span><span class="facility-text">Gudang Penyimpanan</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">💧</span><span class="facility-text">Dispenser Air Panas</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🍽️</span><span class="facility-text">Makan 2x Sehari</span></div>
+                <div class="facility-layout">
+                    <!-- Bagian Kiri: Gambar -->
+                    <div class="facility-image-container fade-in">
+                        <!-- Ganti link src di bawah ini dengan URL foto Komplek Pesantren Anda -->
+                        <img src="https://raw.githubusercontent.com/alfianafriansyah-commits/ppmbsmalang/main/40e33768-c076-4b29-8ff5-e9cdcf3a4485%202.jpg" alt="Fasilitas Komplek Pesantren">
+                    </div>
+                    <!-- Bagian Kanan: Grid -->
+                    <div class="facilities-grid">
+                        <div class="facility-item fade-in"><span class="facility-icon">🗄️</span><span class="facility-text">Lemari Pendidikan</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🍳</span><span class="facility-text">Dapur Bersama</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🚿</span><span class="facility-text">Kamar Mandi</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">📶</span><span class="facility-text">Wi-Fi 300 Mbps</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🏋️</span><span class="facility-text">Rooftop & Gym</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🍜</span><span class="facility-text">Kantin Kejujuran</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🏛️</span><span class="facility-text">Aula & Ruang Belajar</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">👕</span><span class="facility-text">Jemuran & Gantungan Baju</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">💊</span><span class="facility-text">P3K</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">👟</span><span class="facility-text">Rak Sepatu & Sandal</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">📦</span><span class="facility-text">Gudang Penyimpanan</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">💧</span><span class="facility-text">Dispenser Air Panas</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🍽️</span><span class="facility-text">Makan 2x Sehari</span></div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Tab Komplek Muhajirin: Grid di Kiri, Gambar di Kanan -->
             <div id="muhajirin" class="tab-content">
-                <div class="facilities-grid">
-                    <div class="facility-item fade-in"><span class="facility-icon">🛏️</span><span class="facility-text">Kasur & Lemari Pendidikan</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🚿</span><span class="facility-text">Kamar Mandi Dalam</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">📶</span><span class="facility-text">Wi-Fi 50 Mbps</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🅿️</span><span class="facility-text">Halaman Parkir Luas</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">🏛️</span><span class="facility-text">Aula & Ruang Belajar</span></div>
-                    <div class="facility-item fade-in"><span class="facility-icon">❄️</span><span class="facility-text">Kulkas & Dapur Bersama</span></div>
+                <div class="facility-layout reverse">
+                    <!-- Bagian Kiri (ditukar otomatis via class 'reverse'): Grid -->
+                    <div class="facilities-grid">
+                        <div class="facility-item fade-in"><span class="facility-icon">🛏️</span><span class="facility-text">Kasur & Lemari Pendidikan</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🚿</span><span class="facility-text">Kamar Mandi Dalam</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">📶</span><span class="facility-text">Wi-Fi 50 Mbps</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🅿️</span><span class="facility-text">Halaman Parkir Luas</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">🏛️</span><span class="facility-text">Aula & Ruang Belajar</span></div>
+                        <div class="facility-item fade-in"><span class="facility-icon">❄️</span><span class="facility-text">Kulkas & Dapur Bersama</span></div>
+                    </div>
+                    <!-- Bagian Kanan (ditukar otomatis via class 'reverse'): Gambar -->
+                    <div class="facility-image-container fade-in">
+                        <!-- Ganti link src di bawah ini dengan URL foto Komplek Muhajirin Anda -->
+                        <img src="https://raw.githubusercontent.com/alfianafriansyah-commits/ppmbsmalang/main/IMG_6639%202.jpg" alt="Fasilitas Komplek Muhajirin">
+                    </div>
                 </div>
             </div>
+            
         </div>
     </section>
 
