@@ -1892,34 +1892,41 @@
         });
 
         // ==========================================
-        // FITUR SLIDER KEGIATAN (AUTO SCROLL & DRAG)
+        // FITUR SLIDER KEGIATAN (AUTO SCROLL SUPER MULUS & DRAG)
         // ==========================================
         const sliderKegiatan = document.getElementById('kegiatanSlider');
         let isDown = false;
         let startX;
         let scrollLeftPos;
-        let autoScrollInterval;
+        let animationId; // Kita pakai variabel baru untuk frame animasi
 
         // Trik Infinite Loop: Gandakan isi HTML agar seolah-olah tidak habis
         if (sliderKegiatan) {
             const originalContent = sliderKegiatan.innerHTML;
             sliderKegiatan.innerHTML += originalContent;
 
-            // Fungsi untuk menjalankan scroll otomatis
-            function startAutoScroll() {
-                autoScrollInterval = setInterval(() => {
-                    sliderKegiatan.scrollLeft += 1; // Ganti angka 1 untuk mengatur kecepatan (makin besar makin cepat)
-                    
-                    // Jika sudah mencapai setengah (akhir dari data asli), kembalikan ke 0 secara mulus
-                    if (sliderKegiatan.scrollLeft >= sliderKegiatan.scrollWidth / 2) {
-                        sliderKegiatan.scrollLeft = 0;
-                    }
-                }, 30); // Dijalankan setiap 30 milidetik (halus)
+            // Fungsi animasi menggunakan requestAnimationFrame (Standar Animasi Web Mulus)
+            function stepAnimation() {
+                sliderKegiatan.scrollLeft += 1; // Ubah angka 1 ini jika ingin lebih lambat/cepat (misal 0.5 atau 2)
+                
+                // Jika sudah mencapai setengah (akhir dari data asli), kembalikan ke 0 tanpa jeda
+                if (sliderKegiatan.scrollLeft >= sliderKegiatan.scrollWidth / 2) {
+                    sliderKegiatan.scrollLeft = 0;
+                }
+                
+                // Panggil lagi fungsi ini di frame berikutnya
+                animationId = requestAnimationFrame(stepAnimation);
             }
 
-            // Fungsi untuk menghentikan scroll otomatis
+            // Fungsi untuk mulai animasi
+            function startAutoScroll() {
+                cancelAnimationFrame(animationId); // Cegah animasi menumpuk
+                animationId = requestAnimationFrame(stepAnimation);
+            }
+
+            // Fungsi untuk menghentikan animasi
             function stopAutoScroll() {
-                clearInterval(autoScrollInterval);
+                cancelAnimationFrame(animationId);
             }
 
             // --- Logika untuk Drag/Geser Manual (Desktop) ---
@@ -1928,36 +1935,36 @@
                 sliderKegiatan.classList.add('active');
                 startX = e.pageX - sliderKegiatan.offsetLeft;
                 scrollLeftPos = sliderKegiatan.scrollLeft;
-                stopAutoScroll(); // Berhenti saat ditahan
+                stopAutoScroll(); // Berhenti saat diklik/ditahan
             });
 
             sliderKegiatan.addEventListener('mouseleave', () => {
                 if (isDown) {
                     isDown = false;
                     sliderKegiatan.classList.remove('active');
-                    startAutoScroll(); // Jalan lagi jika kursor keluar area
+                    startAutoScroll(); // Jalan otomatis lagi jika mouse keluar area
                 }
             });
 
             sliderKegiatan.addEventListener('mouseup', () => {
                 isDown = false;
                 sliderKegiatan.classList.remove('active');
-                startAutoScroll(); // Jalan lagi saat dilepas
+                startAutoScroll(); // Jalan otomatis lagi saat klik dilepas
             });
 
             sliderKegiatan.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
                 e.preventDefault();
                 const x = e.pageX - sliderKegiatan.offsetLeft;
-                const walk = (x - startX) * 2; // Angka 2 adalah kecepatan drag (sensitivitas)
+                const walk = (x - startX) * 2; // Angka 2 adalah sensitivitas kecepatan drag
                 sliderKegiatan.scrollLeft = scrollLeftPos - walk;
             });
 
-            // --- Logika untuk Swipe (Mobile) ---
+            // --- Logika untuk Touch/Geser (Mobile) ---
             sliderKegiatan.addEventListener('touchstart', () => stopAutoScroll(), {passive: true});
             sliderKegiatan.addEventListener('touchend', () => startAutoScroll());
 
-            // Mulai gerakan otomatis pertama kali saat halaman dimuat
+            // Mulai gerakan otomatis saat web pertama kali dibuka
             startAutoScroll();
         }
     </script>
