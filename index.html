@@ -8,7 +8,6 @@
 <meta name="author" content="PP. Mambaus Sholihin Litahfidz Al-Qur'an Malang">
 <title>PP. Mambaus Sholihin Litahfidz Al-Qur'an Malang</title>
 
-<!-- Favicon (Logo Tab Browser) -->
 <link rel="icon" href="https://raw.githubusercontent.com/alfianafriansyah-commits/ppmbsmalang/main/logo-transparan.png" type="image/png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1150,65 +1149,92 @@ body {
 }
 .santri-btn-gold:hover { background: #b08d1f; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,162,39,0.3); }
 
-/* ── QRIS MODAL ── */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(6px);
-  align-items: center;
-  justify-content: center;
-}
-.modal-overlay.open { display: flex; }
-.modal-box {
+/* ── ALUR PENDAFTARAN ── */
+.alur-section {
   background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  max-width: 420px;
-  width: 90%;
+  padding-top: 32px; 
+}
+.alur-header {
+  margin-bottom: 64px;
+}
+.alur-flow {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.alur-flow::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 1;
+}
+.alur-flow::after {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 10%;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  z-index: 1;
+  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+}
+.alur-flow.visible::after {
+  width: 80%; 
+}
+.alur-step {
+  flex: 1;
   text-align: center;
   position: relative;
-  animation: scaleIn 0.3s cubic-bezier(0.22,1,0.36,1);
+  padding: 0 16px;
+  z-index: 2;
 }
-.modal-close {
-  position: absolute;
-  top: 16px; right: 20px;
-  font-size: 20px;
+.alur-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.alur-icon {
+  width: 72px; 
+  height: 72px;
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: 50%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
   color: var(--gray-400);
-  cursor: pointer;
-  transition: color 0.2s;
-  background: none; border: none;
-  font-family: inherit;
+  font-size: 24px;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 0 8px var(--white);
 }
-.modal-close:hover { color: var(--gray-900); }
-.modal-box h3 {
-  font-size: 20px;
+.alur-step.visible .alur-icon {
+  border-color: var(--green);
+  background: var(--green-xlight);
+  color: var(--green);
+}
+.alur-step:hover .alur-icon {
+  background: var(--green);
+  color: var(--white);
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 8px 20px rgba(26,71,49,0.2), 0 0 0 8px var(--white);
+}
+.alur-step-title {
+  font-size: 17px;
   font-weight: 700;
   color: var(--gray-900);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-.modal-box p {
-  font-size: 14px;
+.alur-step-desc {
+  font-size: 13.5px;
   color: var(--gray-600);
-  margin-bottom: 24px;
   line-height: 1.6;
-}
-.qris-img {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  border: 1px solid var(--gray-100);
-  border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
-  background: var(--gray-50);
-  overflow: hidden;
-}
-.qris-img img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  padding: 12px;
 }
 
 /* ── BIAYA ── */
@@ -1439,6 +1465,67 @@ body {
   border: none;
 }
 
+/* ── QRIS MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: scaleIn 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  font-size: 20px;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: color 0.2s;
+  background: none; border: none;
+  font-family: inherit;
+}
+.modal-close:hover { color: var(--gray-900); }
+.modal-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.modal-box p {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.qris-img {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gray-50);
+  overflow: hidden;
+}
+.qris-img img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 12px;
+}
+
 /* ── FOOTER ── */
 .footer {
   background: var(--green-dark);
@@ -1558,7 +1645,6 @@ body {
   .hero-bg-shape { display: none; }
   .hero-left { padding: 80px 5% 40px; max-width: 100%; }
   
-  /* Memunculkan gambar hero di Tablet/HP */
   .hero-right { 
     display: flex; 
     padding: 0 5% 60px; 
@@ -1594,7 +1680,6 @@ body {
   .fac-grid { grid-template-columns: 1fr; }
   .gallery-item { width: 260px; height: 180px; }
   
-  /* Menyesuaikan kartu melayang di layar HP */
   .hero-card-float { padding: 10px 12px; }
   .card-icon { width: 28px; height: 28px; font-size: 12px; }
   .card-label { font-size: 9px; }
@@ -1604,6 +1689,33 @@ body {
   
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
   .footer-social { width: 32px; height: 32px; font-size: 12px; }
+  
+  /* Alur Pendaftaran Responsive */
+  .alur-flow {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .alur-flow::before {
+    top: 0; left: 50%; right: auto; bottom: 0;
+    width: 2px; height: 100%;
+    transform: translateX(-50%);
+  }
+  .alur-flow::after {
+    top: 0; left: 50%; right: auto;
+    width: 2px; height: 0;
+    transform: translateX(-50%);
+    transition: height 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+  }
+  .alur-flow.visible::after {
+    width: 2px;
+    height: 100%;
+  }
+  .alur-step {
+    padding: 0;
+  }
+  .alur-icon {
+    box-shadow: 0 0 0 12px var(--white);
+  }
 }
 
 @media (max-width: 480px) {
@@ -1618,7 +1730,6 @@ body {
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
@@ -1656,7 +1767,6 @@ body {
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="beranda">
   <div class="hero-bg-shape"></div>
   <div class="hero-left">
@@ -1718,7 +1828,6 @@ body {
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
     <div class="marquee-item"><span class="marquee-dot"></span>Tahfidz Al-Qur'an 30 Juz</div>
@@ -1740,7 +1849,6 @@ body {
   </div>
 </div>
 
-<!-- STATS -->
 <section class="stats-section">
   <div class="stats-grid">
     <div class="stat-card reveal">
@@ -1762,7 +1870,6 @@ body {
   </div>
 </section>
 
-<!-- PROFIL / ABOUT -->
 <section class="section" id="profil">
   <div class="section-inner">
     <div class="about-grid">
@@ -1791,7 +1898,6 @@ body {
           <div class="feature-tag"><span class="dot"></span>Pembentukan karakter melalui wirid, dzikir, dan khidmah</div>
         </div>
         
-        <!-- REVISI 2: TOMBOL YOUTUBE PROFIL PESANTREN DI ATAS DAFTAR SEKARANG -->
         <div style="margin-top:32px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
           <a href="https://youtu.be/5T1MO9mIROs?si=6Vh9nQrrv6jXcK5R" target="_blank" class="btn-profil-youtube">
             <i class="fab fa-youtube"></i> Tonton Profil Lengkap
@@ -1806,7 +1912,6 @@ body {
   </div>
 </section>
 
-<!-- PENGASUH -->
 <section class="pengasuh-section" id="pengasuh">
   <div class="pengasuh-inner">
     <div class="reveal">
@@ -1837,7 +1942,6 @@ body {
     <div class="pengasuh-img-col reveal delay-2">
       <div class="pengasuh-img-frame" id="pengasuhSlideshow">
         
-        <!-- Gambar Slideshow Pengasuh -->
         <img src="https://raw.githubusercontent.com/alfianafriansyah-commits/ppmbsmalang/main/buya-ori.jpg" alt="Prof. Dr. KH. Nasrulloh, Lc., M.Th.I" class="slide-img active">
         <img src="https://raw.githubusercontent.com/alfianafriansyah-commits/ppmbsmalang/main/DSC09054.jpg" alt="Foto Pengasuh 2" class="slide-img">
         <img src="https://raw.githubusercontent.com/alfianafriansyah-commits/ppmbsmalang/main/IMG_6136.JPG" alt="Foto Pengasuh 3" class="slide-img">
@@ -1848,7 +1952,6 @@ body {
         </div>
       </div>
       
-      <!-- REVISI 1: TOMBOL PROFIL UTK AKUN PENGASUH (VERSI HIJAU IKON PUTIH DARI CSS) -->
       <a href="https://youtu.be/TlAGBwM3pMc?si=EAyAxS62aHBQU3yr" target="_blank" class="btn-profil-youtube">
         <i class="fab fa-youtube"></i> Tonton Profil Lengkap
       </a>
@@ -1857,7 +1960,6 @@ body {
   </div>
 </section>
 
-<!-- PROGRAM -->
 <section class="section programs-section" id="program">
   <div class="section-inner">
     <div class="programs-header">
@@ -1907,7 +2009,6 @@ body {
   </div>
 </section>
 
-<!-- GALLERY -->
 <section class="section gallery-section" id="kegiatan">
   <div class="section-inner">
     <div class="gallery-header reveal">
@@ -1929,7 +2030,6 @@ body {
   </div>
 </section>
 
-<!-- FASILITAS -->
 <section class="section fac-section" id="fasilitas">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px" class="reveal">
@@ -1979,7 +2079,6 @@ body {
   </div>
 </section>
 
-<!-- SANTRI SECTION -->
 <section class="section santri-section" id="santri">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px" class="reveal">
@@ -2008,7 +2107,51 @@ body {
   </div>
 </section>
 
-<!-- QRIS MODAL -->
+<section class="section alur-section" id="alur-pendaftaran">
+  <div class="section-inner">
+    <div class="alur-header reveal">
+      <p class="section-label" style="justify-content:center">Cara Bergabung</p>
+      <h2 class="section-title" style="text-align:center">Alur <em>Pendaftaran</em></h2>
+    </div>
+
+    <div class="alur-flow reveal">
+      
+      <div class="alur-step reveal-scale delay-1">
+        <div class="alur-icon-wrap">
+          <div class="alur-icon"><i class="fab fa-whatsapp"></i></div>
+        </div>
+        <h3 class="alur-step-title">1. Hubungi Admin</h3>
+        <p class="alur-step-desc">Sapa kami via WhatsApp untuk menanyakan informasi pendaftaran dan ketersediaan kamar.</p>
+      </div>
+
+      <div class="alur-step reveal-scale delay-2">
+        <div class="alur-icon-wrap">
+          <div class="alur-icon"><i class="fas fa-file-signature"></i></div>
+        </div>
+        <h3 class="alur-step-title">2. Isi Formulir</h3>
+        <p class="alur-step-desc">Jika kamar tersedia, silakan lengkapi data diri Anda melalui tautan formulir yang diberikan.</p>
+      </div>
+
+      <div class="alur-step reveal-scale delay-3">
+        <div class="alur-icon-wrap">
+          <div class="alur-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+        </div>
+        <h3 class="alur-step-title">3. Bayar Infaq</h3>
+        <p class="alur-step-desc">Tunaikan infaq pendaftaran untuk mengamankan kuota dan kamar Anda di pesantren.</p>
+      </div>
+
+      <div class="alur-step reveal-scale delay-4">
+        <div class="alur-icon-wrap">
+          <div class="alur-icon"><i class="fas fa-check-circle"></i></div>
+        </div>
+        <h3 class="alur-step-title">4. Resmi Bergabung</h3>
+        <p class="alur-step-desc">Alhamdulillah! Anda sudah resmi terdaftar dan siap memulai perjalanan menghafal Al-Qur'an.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <div class="modal-overlay" id="qrisModal" onclick="closeQris(event)">
   <div class="modal-box">
     <button class="modal-close" onclick="closeQris(null, true)">✕</button>
@@ -2020,7 +2163,6 @@ body {
   </div>
 </div>
 
-<!-- BIAYA -->
 <section class="section biaya-section" id="biaya">
   <div class="section-inner">
     <div class="biaya-header reveal">
@@ -2069,7 +2211,6 @@ body {
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
   <div class="cta-inner reveal">
     <div class="cta-badge">Penerimaan Santri Baru</div>
@@ -2079,7 +2220,6 @@ body {
   </div>
 </section>
 
-<!-- KONTAK -->
 <section class="section kontak-section" id="kontak">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px" class="reveal">
@@ -2131,7 +2271,6 @@ body {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-top">
@@ -2181,7 +2320,6 @@ body {
   </div>
 </footer>
 
-<!-- WA FLOAT -->
 <a href="https://wa.me/6282257508018" target="_blank" class="wa-float" id="waFloat" title="Chat WhatsApp">
   <div class="pulse"></div>
   <i class="fab fa-whatsapp"></i>
@@ -2293,13 +2431,12 @@ slider.addEventListener('mousemove', e => {
 });
 
 function startAutoScroll() {
-  stopAutoScroll(); // Cegah duplikasi
+  stopAutoScroll(); 
   autoScrollId = requestAnimationFrame(function step() {
-    // Scroll ke arah kiri (scrollRight / menambah nilai scrollLeft)
     if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 1) {
-      slider.scrollLeft = 0; // Kembali ke awal jika mentok
+      slider.scrollLeft = 0; 
     } else {
-      slider.scrollLeft += 1; // Kecepatan smooth
+      slider.scrollLeft += 1; 
     }
     autoScrollId = requestAnimationFrame(step);
   });
@@ -2310,7 +2447,6 @@ slider.addEventListener('mouseenter', stopAutoScroll);
 slider.addEventListener('touchstart', stopAutoScroll, { passive: true });
 slider.addEventListener('touchend', startAutoScroll);
 
-// Mulai scroll pertama kali
 startAutoScroll();
 
 // ── Pengasuh Slideshow (Fade)
@@ -2319,15 +2455,10 @@ let currentPengasuhSlide = 0;
 
 if (pengasuhSlides.length > 1) {
   setInterval(() => {
-    // Hilangkan class active dari gambar saat ini
     pengasuhSlides[currentPengasuhSlide].classList.remove('active');
-    
-    // Pindah ke gambar selanjutnya (kembali ke 0 jika sudah di gambar terakhir)
     currentPengasuhSlide = (currentPengasuhSlide + 1) % pengasuhSlides.length;
-    
-    // Tambahkan class active ke gambar baru
     pengasuhSlides[currentPengasuhSlide].classList.add('active');
-  }, 3000); // Ganti gambar setiap 3 detik
+  }, 3000); 
 }
 </script>
 </body>
